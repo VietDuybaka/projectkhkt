@@ -21,6 +21,7 @@ window.onload = function() {
         }
     }
 }
+
 function createForm(jshttpauth) {
     var form = document.createElement("form");
     form.action = jshttpauth.href;
