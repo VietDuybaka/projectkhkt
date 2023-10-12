@@ -141,7 +141,7 @@
                 localStorage.setItem("name", name);
 
                 document.getElementById("data").innerHTML =
-                    "Vấn đề hiện tại:" + " " + localStorage.name
+                    "Vấn đề hiện tại:" + " " + localStorage.getItem("name")
             } else {
                 alert("Sorry! your browser doesn't support Web Storage");
             }
