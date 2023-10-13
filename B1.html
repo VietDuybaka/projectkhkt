@@ -104,15 +104,50 @@
     <div class="container-fluid bg-dark p-5">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="display-4 text-white">Features</h1>
-                <a href="">Home</a>
+                <h1 class="display-4 text-white">Phòng B1</h1>
+                <a href="">Phòng B1</a>
                 <i class="far fa-square text-primary px-2"></i>
-                <a href="">Features</a>
+                <a href="">Tình Trạng</a>
             </div>
         </div>
     </div>
     <!-- Page Header End -->
+<style>
+    .exam1 {
 
+        box-sizing: border-box;
+        border: 5px solid green;
+        width: 500px;
+        height: 150px;
+        margin-right: auto;
+        margin-left: auto;
+        }
+</style>
+<div class="exam1">
+    <input 
+        id="name"
+        type="name"
+        placeholder="Vấn đề về phòng:" />
+    <button type="submit" onClick="handleClick()">
+    click
+    </button>
+    <br />
+    <div id="data"> </div>
+
+    <script>
+        function handleClick() {
+            if (typeof Storage !== "undefined") {
+                let name = document.getElementById("name").value;
+                localStorage.setItem("name", name);
+
+                document.getElementById("data").innerHTML =
+                    "Vấn đề hiện tại:" + " " + localStorage.getItem("name")
+            } else {
+                alert("Sorry! your browser doesn't support Web Storage");
+            }
+        }
+    </script>
+</div>
 
     <!-- Features Start -->
     <div class="container-fluid py-6 px-5">
@@ -186,19 +221,6 @@
     
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-primary text-secondary p-5">
-        <div class="row g-5">
-            <div class="col-12 text-center">
-                <h1 class="display-5 mb-4">Nhận thông báo</h1>
-                <form class="mx-auto" style="max-width: 600px;">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-white p-3" placeholder="Email của bạn">
-                        <button class="btn btn-dark px-4">Đăng ký</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     <div class="container-fluid bg-dark text-secondary p-5">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
