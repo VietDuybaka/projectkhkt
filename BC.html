@@ -119,54 +119,55 @@
         text-align: center
         }
     </style>
- <div id="dangky" class="col-md-4  col-sm-12  dangky ">
-    <div class="row">
-        <h3 class="index-title text-center">Form đăng ký thông tin</h3>	
-                <!--Cách 1: HIỂN THỊ THÔNG BÁO DẠNG POUPUP -->
-                <script type="text/javascript">
-                    var submitted=false;
-                </script>
-                <iframe id="hidden_iframe" name="hidden_iframe" onload="if(submitted){alert('Bạn đã gửi thông tin thành công tới hệ thống!');}" style="display: none;"></iframe>
-                <!--Cách 2: HIỂN THỊ THÔNG BÁO DẠNG LINK-->
-                 
-        <div class=" wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;">
-            <script type="text/javascript">
-                var submitted=false;
-            </script>
-            <iframe id="hidden_iframe" name="hidden_iframe" onload="if(submitted){window.location='thongbao.html';}" style="display: none;"></iframe>
-            <!--Cách 2: End HIỂN THỊ THÔNG BÁO DẠNG LINK-->
-            <form onsubmit="submitted=true;" target="hidden_iframe" class="text-left"  role="form" id="ss-form" method="GET" action="https://script.google.com/macros/s/AKfycbxPZvzvbI2ecxwLV0MuBkk7cfjcpUEK-9kdY7RrR28I8cuLY-1nt26P5jIkQXRHbkF2QQ/exec">
-                <div class="form-group col-md-10 col-md-offset-1 col-sm-12">
-                    <div>
-                        <input title="" required="" class="form-control" placeholder=" Họ tên... " dir="auto" id="hoten" value="" name="hoten" type="text">
-                    </div>
-                </div>
-                
-                <div class="form-group col-md-10 col-md-offset-1 col-sm-12">
-                    <div>
-                        <input title="" required="" class="form-control" placeholder=" Số điện thoại... " dir="auto" id="dienthoai" value="" name="dienthoai" type="text">
-                    </div>
-                </div>
-                
-                <div class="form-group col-md-10 col-md-offset-1 col-sm-12">
-                    <div>
-                        <input title="" required="" class="form-control" placeholder=" Năm sinh... " dir="auto" id="namsinh" value="" name="namsinh" type="date">
-                    </div>
-                </div>
-                
-                <div class="clear"></div>
+        <div class="exam1" id="dangky" class="col-md-4  col-sm-12  dangky ">
+            <div class="row">
+                <h3 class="index-title text-center">Form đăng ký thông tin</h3>	
+                        <!--Cách 1: HIỂN THỊ THÔNG BÁO DẠNG POUPUP -->
+                        <script type="text/javascript">
+                            var submitted=false;
+                        </script>
+                        <iframe id="hidden_iframe" name="hidden_iframe" onload="if(submitted){alert('Bạn đã gửi thông tin thành công tới hệ thống!');}" style="display: none;"></iframe>
+                        <!--Cách 2: HIỂN THỊ THÔNG BÁO DẠNG LINK-->
+                         
+                <div class=" wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;">
+                    <script type="text/javascript">
+                        var submitted=false;
+                    </script>
+                    <iframe id="hidden_iframe" name="hidden_iframe" onload="if(submitted){window.location='thongbao.html';}" style="display: none;"></iframe>
+                    <!--Cách 2: End HIỂN THỊ THÔNG BÁO DẠNG LINK-->
+                    <form onsubmit="submitted=true;" target="hidden_iframe" class="text-left"  role="form" id="ss-form" method="GET" action="https://script.google.com/macros/s/AKfycbyWU5nxx7VrR1zX3xp7TNqbXPvY0q9nlvr4HJ3w3Yi0ZRihC-hF--0JQH-2HlzY_Pdt/exec">
+                        <div class="exam2">
+                            <div>
+                                <input title="" required="" class="form-control" placeholder="Phòng" dir="auto" id="hoten" value="" name="hoten" type="text">
+                            </div>
+                        </div>
+                        
+                        <div class="exam2">
+                            <div>
+                                <input title="" required="" class="form-control" placeholder="Vấn đề" dir="auto" id="dienthoai" value="" name="dienthoai" type="text">
+                            </div>
+                        </div>
+                        
+                        <div class="exam2">
+                            <div>
+                                <input title="" required="" class="form-control" placeholder="Ngày" dir="auto" id="namsinh" value="" name="namsinh" type="date">
+                            </div>
+                        </div>
+                        
+                        <div class="clear"></div>
 
-                <div class="form-group text-center">
-                        <input class="btn btn-primary dangkybt" id="ss-submit" value="Gửi đăng ký" name="submit" type="submit">
-                    </div>
-            </form>
-            
-            
-            
-            
+                        <div class="form-group text-center">
+                                <input class="btn btn-primary dangkybt" id="ss-submit" value="Gửi thông tin" name="submit" type="submit">
+                            </div>
+                    </form>
+                    
+                    
+                    
+                    
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-secondary p-5">
     <div class="row g-5">
