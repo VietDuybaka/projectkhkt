@@ -117,10 +117,11 @@
 
         box-sizing: border-box;
         border: 5px solid green;
-        width: 500px;
-        height: 150px;
+        width: 300px;
+        height: 100px;
         margin-right: auto;
         margin-left: auto;
+        text-align: center
         }
 </style>
 <div class="exam1">
@@ -129,12 +130,14 @@
         type="name"
         placeholder="Vấn đề về phòng:" />
     <button type="submit" onClick="handleClick()">
-    click
+    Nhập
     </button>
     <br />
     <div id="data"> </div>
 
+    
     <script>
+        data=localStorage.getItem("name")
         function handleClick() {
             if (typeof Storage !== "undefined") {
                 let name = document.getElementById("name").value;
