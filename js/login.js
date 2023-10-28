@@ -50,3 +50,7 @@ function createForm(jshttpauth) {
     form.appendChild(submit);
     jshttpauth.parentNode.replaceChild(form, jshttpauth);
 }
+
+const loginFunc = () => {
+    
+}
