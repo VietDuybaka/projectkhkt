@@ -1,10 +1,10 @@
-document.getElementById("loginForm").addEventListener("submit", function (e) {
+document.getElementById("registerForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    fetch("login.php", {
+    fetch("register.php", {
         method: "POST",
         body: JSON.stringify({ username, password }),
         headers: {
@@ -14,9 +14,9 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                window.location.href = "index.html";
+                window.location.href = "login.html";
             } else {
-                document.getElementById("loginMessage").textContent = "Thông tin đăng nhập không hợp lệ.";
+                document.getElementById("registerMessage").textContent = "Tài khoản đã tồn tại hoặc lỗi khác.";
             }
         })
         .catch(error => {
