@@ -157,6 +157,29 @@
         </div>
     </div>
     <!-- Carousel End -->
+
+    <h1>Bật thông báo cháy</h1>
+    <script>
+        navigator.serviceWorker.register("sw.js");
+
+        function enableNotif() {
+            Notification.requestPermission().then((permission)=> {
+                if (permission === 'granted') {
+                    // get service worker
+                    navigator.serviceWorker.ready.then((sw)=> {
+                        // subscribe
+                        sw.pushManager.subscribe({
+                            userVisibleOnly: true,
+                            applicationServerKey: "BLWKe9pIQa2mHgqh2eI4b_a-XgZFbFyvLqRA3-eUtKehdXtRGuqjIVKfkBmhm8ZtcMF_q0oEPKBVjZyqF9KzTdg"
+                        }).then((subscription)=> {
+                            console.log(JSON.stringify(subscription));
+                        });
+                    });
+                }
+            });
+        }
+    </script>
+    <button onclick="enableNotif()">Enable Notif</button>
     
     <!-- Services Start -->
     <div class="container-fluid pt-6 px-5">
