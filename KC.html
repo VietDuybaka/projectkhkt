@@ -103,26 +103,27 @@
 </style>
 <div class="exam1">
 <script>
-    navigator.serviceWorker.register("sw.js");
-
-    function enableNotif() {
-        Notification.requestPermission().then((permission)=> {
-            if (permission === 'granted') {
-                // get service worker
-                navigator.serviceWorker.ready.then((sw)=> {
-                    // subscribe
-                    sw.pushManager.subscribe({
-                        userVisibleOnly: true,
-                        applicationServerKey: "BLWKe9pIQa2mHgqh2eI4b_a-XgZFbFyvLqRA3-eUtKehdXtRGuqjIVKfkBmhm8ZtcMF_q0oEPKBVjZyqF9KzTdg"
-                    }).then((subscription)=> {
-                        console.log(JSON.stringify(subscription));
+    function showNotification() {
+        if (!("Notification" in window)) {
+            alert("Trình duyệt của bạn không hỗ trợ thông báo.");
+        } else if (Notification.permission === "granted") {
+            var notification = new Notification("Thông báo từ trang web", {
+                body: "Chào mừng bạn đến với trang web của chúng tôi!",
+                icon: "img/icon.png" 
+            });
+        } else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then(function (permission) {
+                if (permission === "granted") {
+                    var notification = new Notification("Thông báo từ trang web", {
+                        body: "Chào mừng bạn đến với trang web của chúng tôi!",
+                        icon: "img/icon.png"
                     });
-                });
-            }
-        });
+                }
+            });
+        }
     }
 </script>
-<button onclick="enableNotif()">Nhận thông báo trong trường hợp khẩn cấp</button>
+<button onclick="showNotification()">Thông Báo Khẩn Cấp</button>
 </div>
         
    <!-- Navbar End -->
