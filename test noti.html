@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Notification Example</title>
+    <script>
+        function showNotification() {
+            // Kiểm tra xem trình duyệt có hỗ trợ thông báo không
+            if (!("Notification" in window)) {
+                alert("Trình duyệt của bạn không hỗ trợ thông báo.");
+            } else if (Notification.permission === "granted") {
+                // Nếu đã cấp quyền, hiển thị thông báo
+                var notification = new Notification("Thông báo từ trang web", {
+                    body: "Chào mừng bạn đến với trang web của chúng tôi!",
+                    icon: "img/icon.png" // Đường dẫn đến biểu tượng thông báo
+                });
+            } else if (Notification.permission !== "denied") {
+                // Nếu chưa cấp quyền, yêu cầu cấp quyền
+                Notification.requestPermission().then(function (permission) {
+                    if (permission === "granted") {
+                        var notification = new Notification("Thông báo từ trang web", {
+                            body: "Chào mừng bạn đến với trang web của chúng tôi!",
+                            icon: "img/icon.png"
+                        });
+                    }
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Web Notification Example</h1>
+
+    <button onclick="showNotification()">Hiển thị thông báo</button>
+
+</body>
+</html>
