@@ -6,25 +6,37 @@
     <title>Web Notification Example</title>
     <script>
         function showNotification() {
-            // Kiểm tra xem trình duyệt có hỗ trợ thông báo không
-            if (!("Notification" in window)) {
-                alert("Trình duyệt của bạn không hỗ trợ thông báo.");
-            } else if (Notification.permission === "granted") {
-                // Nếu đã cấp quyền, hiển thị thông báo
-                var notification = new Notification("Thông báo từ trang web", {
-                    body: "Chào mừng bạn đến với trang web của chúng tôi!",
-                    icon: "img/icon.png" // Đường dẫn đến biểu tượng thông báo
-                });
-            } else if (Notification.permission !== "denied") {
-                // Nếu chưa cấp quyền, yêu cầu cấp quyền
-                Notification.requestPermission().then(function (permission) {
-                    if (permission === "granted") {
-                        var notification = new Notification("Thông báo từ trang web", {
-                            body: "Chào mừng bạn đến với trang web của chúng tôi!",
-                            icon: "img/icon.png"
-                        });
+            if ("Notification" in window) {
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+                if (isMobile) {
+                    if ("serviceWorker" in navigator) {
+                        navigator.serviceWorker.register("service-worker.js")
+                            .then(registration => {
+                                registration.showNotification("Thông báo từ trang web", {
+                                    body: "Chào mừng bạn đến với trang web của chúng tôi!",
+                                    icon: "img/icon.png"
+                                });
+                            })
+                            .catch(error => console.error("Service Worker registration failed:", error));
                     }
-                });
+                } else if (Notification.permission === "granted") {
+                    const notification = new Notification("Thông báo từ trang web", {
+                        body: "Chào mừng bạn đến với trang web của chúng tôi!",
+                        icon: "img/icon.png"
+                    });
+                } else if (Notification.permission !== "denied") {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === "granted") {
+                            const notification = new Notification("Thông báo từ trang web", {
+                                body: "Chào mừng bạn đến với trang web của chúng tôi!",
+                                icon: "img/icon.png"
+                            });
+                        }
+                    });
+                }
+            } else {
+                alert("Trình duyệt của bạn không hỗ trợ thông báo.");
             }
         }
     </script>
