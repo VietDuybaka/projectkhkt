@@ -234,7 +234,7 @@ h6,
   border-radius: 45px;
   transition: .5s;
 }
-
+img.cangiua {width:50%   ;display: block; margin-left: auto; margin-right: auto;}
 .testimonial-carousel .owl-nav .owl-prev:hover,
 .testimonial-carousel .owl-nav .owl-next:hover {
   color: var(--dark);
