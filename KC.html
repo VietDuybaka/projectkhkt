@@ -102,6 +102,7 @@
         }
 </style>
 <div class="exam1">
+<head>
     <script>
         function showNotification() {
             if ("Notification" in window) {
@@ -138,15 +139,16 @@
             }
         }
     </script>
-    <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("service-worker.js")
-                .then(registration => {
-                    console.log("Service Worker registered with scope:", registration.scope);
-                })
-                .catch(error => console.error("Service Worker registration failed:", error));
-        }
-    </script>    
+</head>
+<script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js")
+            .then(registration => {
+                console.log("Service Worker registered with scope:", registration.scope);
+            })
+            .catch(error => console.error("Service Worker registration failed:", error));
+    }
+</script>    
 <button onclick="showNotification()">Thông Báo Khẩn Cấp</button>
 </div>
         
