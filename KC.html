@@ -102,29 +102,16 @@
         }
 </style>
 <div class="exam1">
-<head>
     <script>
         function showNotification() {
             if ("Notification" in window) {
-                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-                if (isMobile) {
-                    if ("serviceWorker" in navigator) {
-                        navigator.serviceWorker.register("service-worker.js")
-                            .then(registration => {
-                                registration.showNotification("Thông báo từ trang web", {
-                                    body: "Chào mừng bạn đến với trang web của chúng tôi!",
-                                    icon: "img/icon.png"
-                                });
-                            })
-                            .catch(error => console.error("Service Worker registration failed:", error));
-                    }
-                } else if (Notification.permission === "granted") {
+                if (Notification.permission === "granted") {
                     const notification = new Notification("Thông báo từ trang web", {
                         body: "Chào mừng bạn đến với trang web của chúng tôi!",
                         icon: "img/icon.png"
                     });
-                } else if (Notification.permission !== "denied") {
+                } 
+                else if (Notification.permission !== "denied") {
                     Notification.requestPermission().then(permission => {
                         if (permission === "granted") {
                             const notification = new Notification("Thông báo từ trang web", {
@@ -138,17 +125,7 @@
                 alert("Trình duyệt của bạn không hỗ trợ thông báo.");
             }
         }
-    </script>
-</head>
-<script>
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("service-worker.js")
-            .then(registration => {
-                console.log("Service Worker registered with scope:", registration.scope);
-            })
-            .catch(error => console.error("Service Worker registration failed:", error));
-    }
-</script>    
+    </script>  
 <button onclick="showNotification()">Thông Báo Khẩn Cấp</button>
 </div>
         

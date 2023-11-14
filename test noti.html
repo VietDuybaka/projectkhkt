@@ -16,19 +16,17 @@
                             .then(registration => {
                                 registration.showNotification("Thông báo từ trang web", {
                                     body: "Chào mừng bạn đến với trang web của chúng tôi!",
-                                    icon: "imh/icon.png"
+                                    icon: "img/icon.png"
                                 });
                             })
                             .catch(error => console.error("Service Worker registration failed:", error));
                     }
                 } else if (Notification.permission === "granted") {
-                    // Nếu là máy tính và đã cấp quyền, hiển thị thông báo
                     const notification = new Notification("Thông báo từ trang web", {
                         body: "Chào mừng bạn đến với trang web của chúng tôi!",
                         icon: "img/icon.png"
                     });
                 } else if (Notification.permission !== "denied") {
-                    // Nếu là máy tính và chưa cấp quyền, yêu cầu cấp quyền
                     Notification.requestPermission().then(permission => {
                         if (permission === "granted") {
                             const notification = new Notification("Thông báo từ trang web", {
