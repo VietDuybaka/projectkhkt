@@ -10,22 +10,25 @@
                 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
                 if (isMobile) {
+                    // Nếu là thiết bị di động, sử dụng service worker để hiển thị thông báo
                     if ("serviceWorker" in navigator) {
                         navigator.serviceWorker.register("service-worker.js")
                             .then(registration => {
                                 registration.showNotification("Thông báo từ trang web", {
                                     body: "Chào mừng bạn đến với trang web của chúng tôi!",
-                                    icon: "img/icon.png"
+                                    icon: "imh/icon.png"
                                 });
                             })
                             .catch(error => console.error("Service Worker registration failed:", error));
                     }
                 } else if (Notification.permission === "granted") {
+                    // Nếu là máy tính và đã cấp quyền, hiển thị thông báo
                     const notification = new Notification("Thông báo từ trang web", {
                         body: "Chào mừng bạn đến với trang web của chúng tôi!",
                         icon: "img/icon.png"
                     });
                 } else if (Notification.permission !== "denied") {
+                    // Nếu là máy tính và chưa cấp quyền, yêu cầu cấp quyền
                     Notification.requestPermission().then(permission => {
                         if (permission === "granted") {
                             const notification = new Notification("Thông báo từ trang web", {
@@ -41,6 +44,15 @@
         }
     </script>
 </head>
+<script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js")
+            .then(registration => {
+                console.log("Service Worker registered with scope:", registration.scope);
+            })
+            .catch(error => console.error("Service Worker registration failed:", error));
+    }
+</script>
 <body>
 
     <h1>Web Notification Example</h1>
