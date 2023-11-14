@@ -1,25 +1,22 @@
-document.getElementById("loginForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+var accounts = {
+    "admin":"123"
+}
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+var form = document.getElementById("form-login");
 
-    fetch("login.php", {
-        method: "POST",
-        body: JSON.stringify({ username, password }),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = "index.html";
-            } else {
-                document.getElementById("loginMessage").textContent = "Thông tin đăng nhập không hợp lệ.";
-            }
-        })
-        .catch(error => {
-            console.error(error);
-        });
-});
+function handleForm(event) {
+  event.preventDefault();
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+
+  if (accounts[username] == password) {
+    alert("Đăng nhập thành công")
+    location.replace("index.html");
+  } else {
+    let msg = document.getElementById("loginMessage");
+    msg.innerText = "Đăng nhập thất bại, vui lòng kiểm tra lại tên đăng nhập, mật khẩu và thử lại.";
+  }
+
+}
+
+form.addEventListener("submit", handleForm);

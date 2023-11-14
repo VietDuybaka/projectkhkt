@@ -103,20 +103,21 @@
                 <h1 class="form-heading">Đăng nhập tài khoản</h1>
                 <div class="form-group">
                     <i class="far fa-user"></i>
-                    <input type="text" class="form-input" placeholder="Tên đăng nhập">
+                    <input id = "username" type="text" class="form-input" placeholder="Tên đăng nhập">
                 </div>
                 <div class="form-group">
                     <i class="fas fa-key"></i>
-                    <input type="password" class="form-input" placeholder="Mật khẩu">
+                    <input id = "password" type="password" class="form-input" placeholder="Mật khẩu">
                     <div id="eye">
                         <i class="far fa-eye"></i>
                     </div>
                 </div>
-                <button type="submit" value="Đăng nhập" class="form-submit"> <a href="index.html">Đăng nhập</a></button>
+                <button onclick="handleForm()" id = "submit-btn" type="submit" value="Đăng nhập" class="form-submit">Đăng nhập</button>
+                <div style="color: red;" id="loginMessage"></div>
             </form>  
-        <div id="loginMessage"></div>
+        
 
-        <script src="login.js"></script>
+        <script src="data username and password/login.js"></script>
     </body>
     </html>
     
