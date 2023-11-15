@@ -154,6 +154,33 @@
                     <div class="p-4">
                         <p class="text-white mb-4">Phòng 100m2, có đầy đủ tiện nghi. Gồm một phòng ngủ, một phòng khách, một phòng bếp, phòng tắm, ban công.</p>
                         <a href="" class="btn btn-light py-md-3 px-md-5 rounded-pill mb-2">Đặt Phòng</a>
+                        <div class="exam1">
+                            <script>
+                                function showNotification() {
+                                    if ("Notification" in window) {
+                                        if (Notification.permission === "granted") {
+                                            const notification = new Notification("Thông báo từ Chung cư A79", {
+                                                body: "THÔNG BÁO KHẨN CẤP: Phòng C1 đang cháy!",
+                                                icon: "img/alert.png"
+                                            });
+                                        } 
+                                        else if (Notification.permission !== "denied") {
+                                            Notification.requestPermission().then(permission => {
+                                                if (permission === "granted") {
+                                                    const notification = new Notification("Thông báo từ Chung cư A79", {
+                                                        body: "THÔNG BÁO KHẨN CẤP: Phòng C1 đang cháy!",
+                                                        icon: "img/alert.png"
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    } else {
+                                        alert("Trình duyệt của bạn không hỗ trợ thông báo.");
+                                    }
+                                }
+                            </script>  
+                        <a class="btn btn-light py-md-3 px-md-5 rounded-pill mb-2"><button onclick="showNotification()">Thông Báo Khẩn Cấp</button></a>
+                        </div>
                     </div>
                 </div>
             </div>

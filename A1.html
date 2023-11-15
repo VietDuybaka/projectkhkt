@@ -159,17 +159,17 @@
                                 function showNotification() {
                                     if ("Notification" in window) {
                                         if (Notification.permission === "granted") {
-                                            const notification = new Notification("Thông báo từ trang web", {
-                                                body: "Chào mừng bạn đến với trang web của chúng tôi!",
-                                                icon: "img/icon.png"
+                                            const notification = new Notification("Thông báo từ Chung cư A79", {
+                                                body: "THÔNG BÁO KHẨN CẤP: Phòng A1 đang cháy!",
+                                                icon: "img/alert.png"
                                             });
                                         } 
                                         else if (Notification.permission !== "denied") {
                                             Notification.requestPermission().then(permission => {
                                                 if (permission === "granted") {
-                                                    const notification = new Notification("Thông báo từ trang web", {
-                                                        body: "Chào mừng bạn đến với trang web của chúng tôi!",
-                                                        icon: "img/icon.png"
+                                                    const notification = new Notification("Thông báo từ Chung cư A79", {
+                                                        body: "THÔNG BÁO KHẨN CẤP: Phòng A1 đang cháy!",
+                                                        icon: "img/alert.png"
                                                     });
                                                 }
                                             });
