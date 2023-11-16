@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Phòng</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .room {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .on-fire {
+            background-color: red !important;
+            color: white;
+        }
+
+        .notification {
+            display: none;
+            background-color: #f2f2f2;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 300px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+        }
+
+        .notification.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Quản lý Phòng</h1>
+
+    <table>
+        <tr>
+            <th>Phòng A1</th>
+            <th>Phòng A2</th>
+            <th>Phòng B1</th>
+            <th>Phòng B2</th>
+            <th>Phòng C1</th>
+            <th>Phòng C2</th>
+            <th>Phòng Gym</th>
+            <th>Phòng Hội trường</th>
+        </tr>
+        <tr>
+            <td class="room" onclick="toggleFire(this)">A1</td>
+            <td class="room" onclick="toggleFire(this)">A2</td>
+            <td class="room" onclick="toggleFire(this)">B1</td>
+            <td class="room" onclick="toggleFire(this)">B2</td>
+            <td class="room" onclick="toggleFire(this)">C1</td>
+            <td class="room" onclick="toggleFire(this)">C2</td>
+            <td class="room" onclick="toggleFire(this)">Gym</td>
+            <td class="room" onclick="toggleFire(this)">Hội trường</td>
+        </tr>
+    </table>
+
+    <div id="notification" class="notification">
+        <p id="notificationText"></p>
+    </div>
+
+    <script>
+        function toggleFire(element) {
+            element.classList.toggle("on-fire");
+
+            const roomNumber = element.textContent;
+
+            const notification = document.getElementById("notification");
+            const notificationText = document.getElementById("notificationText");
+
+            if (element.classList.contains("on-fire")) {
+                notificationText.textContent = "Phòng " + roomNumber + " bị cháy!";
+                notification.classList.add("show");
+
+                setTimeout(() => {
+                    notification.classList.remove("show");
+                }, 5000);
+            }
+        }
+    </script>
+
+</body>
+</html>
+
