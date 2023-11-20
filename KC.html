@@ -246,7 +246,7 @@
                     <th>Phòng Hội trường</th>
                 </tr>
                 <tr>
-                    <td class="room" onclick="play(),toggleFire(this)">A1</td>
+                    <td class="room" onclick="toggleFire(this)">A1</td>
                     <td class="room" onclick="toggleFire(this)">A2</td>
                     <td class="room" onclick="toggleFire(this)">B1</td>
                     <td class="room" onclick="toggleFire(this)">B2</td>
@@ -260,17 +260,6 @@
             <div id="notification" class="notification">
                 <p id="notificationText"></p>
             </div>
-            <script>
-                function play() {
-                    var audio = document.getElementById('audio');
-                    if (audio.paused) {
-                        audio.play();
-                    }else{
-                        audio.pause();
-                        audio.currentTime = 0
-                    }
-                }
-            </script>
             <audio src="thongbao.mp3" id="audio"></audio>
             <script>
                 function toggleFire(element) {
@@ -280,6 +269,13 @@
         
                     const notification = document.getElementById("notification");
                     const notificationText = document.getElementById("notificationText");
+                    var audio = document.getElementById('audio');
+                    if (audio.paused) {
+                        audio.play();
+                    }else{
+                        audio.pause();
+                        audio.currentTime = 0
+                    }
         
                     if (element.classList.contains("on-fire")) {
                         notificationText.textContent = "Phòng " + roomNumber + " bị cháy!";
