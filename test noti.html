@@ -3,59 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Notification Example</title>
-    <script>
-        function showNotification() {
-            if ("Notification" in window) {
-                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    <title>Quản lý Phòng</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px;
+        }
 
-                if (isMobile) {
-                    // Nếu là thiết bị di động, sử dụng service worker để hiển thị thông báo
-                    if ("serviceWorker" in navigator) {
-                        navigator.serviceWorker.register("service-worker.js")
-                            .then(registration => {
-                                registration.showNotification("Thông báo từ trang web", {
-                                    body: "Chào mừng bạn đến với trang web của chúng tôi!",
-                                    icon: "img/icon.png"
-                                });
-                            })
-                            .catch(error => console.error("Service Worker registration failed:", error));
-                    }
-                } else if (Notification.permission === "granted") {
-                    const notification = new Notification("Thông báo từ trang web", {
-                        body: "Chào mừng bạn đến với trang web của chúng tôi!",
-                        icon: "img/icon.png"
-                    });
-                } else if (Notification.permission !== "denied") {
-                    Notification.requestPermission().then(permission => {
-                        if (permission === "granted") {
-                            const notification = new Notification("Thông báo từ trang web", {
-                                body: "Chào mừng bạn đến với trang web của chúng tôi!",
-                                icon: "img/icon.png"
-                            });
-                        }
-                    });
-                }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .room {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .on-fire {
+            background-color: red !important;
+            color: white;
+        }
+
+        .notification {
+            display: none;
+            background-color: #f2f2f2;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 300px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+        }
+
+        .notification.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Quản lý Phòng</h1>
+
+    <table>
+        <tr>
+            <th>Phòng A</th>
+            <th>Phòng B</th>
+            <th>Phòng C</th>
+            <th>Phòng D</th>
+            <th>Phòng E</th>
+            <th>Phòng F</th>
+            <th>Phòng G</th>
+            <th>Phòng H</th>
+        </tr>
+        <tr>
+            <td class="room" onclick="toggleFire(this)">1</td>
+            <td class="room" onclick="toggleFire(this)">2</td>
+            <td class="room" onclick="toggleFire(this)">3</td>
+            <td class="room" onclick="toggleFire(this)">4</td>
+            <td class="room" onclick="toggleFire(this)">5</td>
+            <td class="room" onclick="toggleFire(this)">6</td>
+            <td class="room" onclick="toggleFire(this)">7</td>
+            <td class="room" onclick="toggleFire(this)">8</td>
+        </tr>
+    </table>
+
+    <div id="notification" class="notification">
+        <p id="notificationText"></p>
+    </div>
+
+    <audio id="alarmSound" src="path/to/alarm.mp3"></audio>
+
+    <script>
+        function toggleFire(element) {
+            // Thêm hoặc loại bỏ lớp "on-fire" để chuyển màu ô
+            element.classList.toggle("on-fire");
+
+            // Lấy số phòng tương ứng với ô được bấm
+            const roomNumber = element.textContent;
+
+            // Hiển thị thông báo
+            const notification = document.getElementById("notification");
+            const notificationText = document.getElementById("notificationText");
+            const alarmSound = document.getElementById("alarmSound");
+
+            if (element.classList.contains("on-fire")) {
+                notificationText.textContent = "Phòng " + roomNumber + " bị cháy!";
+                notification.classList.add("show");
+
+                // Phát âm thanh cảnh báo
+                alarmSound.play();
+
+                // Tự động ẩn thông báo sau 3 giây
+                setTimeout(() => {
+                    notification.classList.remove("show");
+                }, 3000);
             } else {
-                alert("Trình duyệt của bạn không hỗ trợ thông báo.");
+                // Tắt âm thanh khi chữa cháy
+                alarmSound.pause();
+                alarmSound.currentTime = 0;
             }
         }
     </script>
-</head>
-<script>
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("service-worker.js")
-            .then(registration => {
-                console.log("Service Worker registered with scope:", registration.scope);
-            })
-            .catch(error => console.error("Service Worker registration failed:", error));
-    }
-</script>
-<body>
-
-    <h1>Web Notification Example</h1>
-
-    <button onclick="showNotification()">Hiển thị thông báo</button>
 
 </body>
 </html>
