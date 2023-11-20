@@ -234,63 +234,60 @@
         <div class="text-center mx-auto mb-5" style="max-width: 600px;">
             <h1>Quản lý Phòng</h1>
         </div>
-            <table>
-                <tr>
-                    <th>Phòng A1</th>
-                    <th>Phòng A2</th>
-                    <th>Phòng B1</th>
-                    <th>Phòng B2</th>
-                    <th>Phòng C1</th>
-                    <th>Phòng C2</th>
-                    <th>Phòng Gym</th>
-                    <th>Phòng Hội trường</th>
-                </tr>
-                <tr>
-                    <td class="room" onclick="play(),toggleFire(this)">A1</td>
-                    <td class="room" onclick="toggleFire(this)">A2</td>
-                    <td class="room" onclick="toggleFire(this)">B1</td>
-                    <td class="room" onclick="toggleFire(this)">B2</td>
-                    <td class="room" onclick="toggleFire(this)">C1</td>
-                    <td class="room" onclick="toggleFire(this)">C2</td>
-                    <td class="room" onclick="toggleFire(this)">Gym</td>
-                    <td class="room" onclick="toggleFire(this)">Hội trường</td>
-                </tr>
-            </table>
-        
-            <div id="notification" class="notification">
-                <p id="notificationText"></p>
-            </div>
-            <script>
-                function play() {
-                    var audio = document.getElementById('audio');
-                    if (audio.paused) {
-                        audio.play();
-                    }else{
-                        audio.pause();
-                        audio.currentTime = 0
-                    }
+        <table>
+            <tr>
+                <th>Phòng A1</th>
+                <th>Phòng A2</th>
+                <th>Phòng B1</th>
+                <th>Phòng B2</th>
+                <th>Phòng C1</th>
+                <th>Phòng C2</th>
+                <th>Phòng Gym</th>
+                <th>Phòng Hội Trường</th>
+            </tr>
+            <tr>
+                <td class="room" onclick="toggleFire(this)">A1</td>
+                <td class="room" onclick="toggleFire(this)">A2</td>
+                <td class="room" onclick="toggleFire(this)">B1</td>
+                <td class="room" onclick="toggleFire(this)">B2</td>
+                <td class="room" onclick="toggleFire(this)">C1</td>
+                <td class="room" onclick="toggleFire(this)">C2</td>
+                <td class="room" onclick="toggleFire(this)">Gym</td>
+                <td class="room" onclick="toggleFire(this)">Hội Trường</td>
+            </tr>
+        </table>
+    
+        <div id="notification" class="notification">
+            <p id="notificationText"></p>
+        </div>
+    
+        <audio id="alarmSound" src="img/alert.mp3"></audio>
+    
+        <script>
+            function toggleFire(element) {
+                element.classList.toggle("on-fire");
+    
+                const roomNumber = element.textContent;
+    
+                const notification = document.getElementById("notification");
+                const notificationText = document.getElementById("notificationText");
+                const alarmSound = document.getElementById("alarmSound");
+    
+                if (element.classList.contains("on-fire")) {
+                    notificationText.textContent = "Phòng " + roomNumber + " bị cháy!";
+                    notification.classList.add("show");
+    
+                    alarmSound.play();
+    
+                    setTimeout(() => {
+                        notification.classList.remove("show");
+                    }, 5000);
+                } else {
+                    alarmSound.pause();
+                    alarmSound.currentTime = 0;
                 }
-            </script>
-            <audio src="thongbao.mp3" id="audio"></audio>
-            <script>
-                function toggleFire(element) {
-                    element.classList.toggle("on-fire");
-        
-                    const roomNumber = element.textContent;
-        
-                    const notification = document.getElementById("notification");
-                    const notificationText = document.getElementById("notificationText");
-        
-                    if (element.classList.contains("on-fire")) {
-                        notificationText.textContent = "Phòng " + roomNumber + " bị cháy!";
-                        notification.classList.add("show");
-        
-                        setTimeout(() => {
-                            notification.classList.remove("show");
-                        }, 5000);
-                    }
-                }
-            </script>
+            }
+        </script>
 
 
         </body>
