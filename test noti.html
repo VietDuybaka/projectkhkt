@@ -4,54 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Phòng</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 50%;
-            margin: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        .room {
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .on-fire {
-            background-color: red !important;
-            color: white;
-        }
-
-        .notification {
-            display: none;
-            background-color: #f2f2f2;
-            padding: 20px;
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            width: 300px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
-        }
-
-        .notification.show {
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <h1>Quản lý Phòng</h1>
 
-    <table>
+    <table id="roomTable">
         <tr>
             <th>Phòng A</th>
             <th>Phòng B</th>
@@ -78,39 +37,9 @@
         <p id="notificationText"></p>
     </div>
 
-    <audio id="alarmSound" src="img/alert.mp3"></audio>
+    <audio id="alarmSound" src="alarm.mp3"></audio>
 
-    <script>
-        function toggleFire(element) {
-            // Thêm hoặc loại bỏ lớp "on-fire" để chuyển màu ô
-            element.classList.toggle("on-fire");
-
-            // Lấy số phòng tương ứng với ô được bấm
-            const roomNumber = element.textContent;
-
-            // Hiển thị thông báo
-            const notification = document.getElementById("notification");
-            const notificationText = document.getElementById("notificationText");
-            const alarmSound = document.getElementById("alarmSound");
-
-            if (element.classList.contains("on-fire")) {
-                notificationText.textContent = "Phòng " + roomNumber + " bị cháy!";
-                notification.classList.add("show");
-
-                // Phát âm thanh cảnh báo
-                alarmSound.play();
-
-                // Tự động ẩn thông báo sau 3 giây
-                setTimeout(() => {
-                    notification.classList.remove("show");
-                }, 3000);
-            } else {
-                // Tắt âm thanh khi chữa cháy
-                alarmSound.pause();
-                alarmSound.currentTime = 0;
-            }
-        }
-    </script>
+    <script src="main.js"></script>
 
 </body>
 </html>
